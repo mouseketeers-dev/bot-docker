@@ -1,0 +1,30 @@
+{
+  "name": "mouseketeer-bot",
+  "version": "0.5.11",
+  "description": "",
+  "scripts": {
+    "install": "cp src/config/default.yml user/settings.yml.template && cp src/data/alias.yml.template user/alias.yml.template",
+    "bot": "node --experimental-specifier-resolution=node src/index.js",
+    "login": "node --experimental-specifier-resolution=node src/login.js",
+    "start": "pm2 start bot_pm2.yml"
+  },
+  "keywords": [],
+  "type": "module",
+  "author": "kentnek",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^10.0.0",
+    "debug": "^4.3.1",
+    "js-yaml": "^4.0.0",
+    "king-reward-solver": "mouseketeers-dev/king-reward-solver#master",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
+    "object-path": "^0.11.5",
+    "puppeteer": "^8.0.0",
+    "readline-promise": "^1.0.5",
+    "uuid": "^8.3.2",
+    "word-wrap": "^1.2.3"
+  }
+}

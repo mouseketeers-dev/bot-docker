@@ -1,0 +1,56 @@
+# TODO:
+# 1. auto generate this file using login script
+# 2. add watchtower
+# 3. auto build with github actions
+
+version: '3.8'
+
+x-default: &default
+  image: mouseketeers/bot:latest
+  cap_add:
+    - SYS_ADMIN
+  init: true
+  logging:
+    driver: "json-file"
+    options:
+      max-file: 3
+      max-size: 10m
+  volumes:
+    - ./user:/usr/bot/user
+
+services:
+  kent:
+    <<: *default
+    container_name: kent
+    environment:
+      - name=kent
+      - TZ=Asia/Singapore
+      - DEBUG=mkt:*
+
+  minqi:
+    <<: *default
+    container_name: minqi
+    environment:
+      - name=minqi
+      - TZ=Asia/Singapore
+      - DEBUG=mkt:*
+
+  shady:
+    <<: *default
+    container_name: shady
+    environment:
+      - name=shady
+      - TZ=Asia/Singapore
+      - DEBUG=mkt:*
+
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  portainer_data:
